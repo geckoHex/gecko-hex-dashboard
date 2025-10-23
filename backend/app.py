@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Enable CORS for frontend (running on port 3000)
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:3000"],
+        "origins": ["http://localhost:3000", "http://172.236.252.204:3000/"],
         "methods": ["GET", "POST", "PUT", "DELETE"],
         "allow_headers": ["Content-Type", "X-API-Key"]
     }
