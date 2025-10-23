@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gecko Hex Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="loginSection" class="container">
+        <div class="card">
+            <h1>Gecko Hex Dashboard</h1>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="apiKey">API Key:</label>
+                    <input type="password" id="apiKey" name="apiKey" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div id="loginError" class="error"></div>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="container" style="display: none;">
+        <div class="card">
+            <h1>Gecko Hex Dashboard</h1>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            
+            <div class="dashboard-content">
+                <h2>Random Number Generator</h2>
+                <button id="getRandomBtn" class="btn">Get Random Number</button>
+                <div id="randomResult" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
