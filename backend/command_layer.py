@@ -1,6 +1,7 @@
-import subprocess
+# import subprocess
 
 def run_command(command: str) -> str:
+    return "Declined to run commands."
     result = subprocess.run(
         command,
         shell=True,           # run through a shell
