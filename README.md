@@ -20,6 +20,8 @@ A full-stack web application with a Flask REST API backend and vanilla JavaScrip
 
 **Note**: To generate your API key for the `.env` file, hash your desired username:password combination using SHA-256.
 
+**Security Note**: The application uses the Web Crypto API (`crypto.subtle`) when available (HTTPS or localhost). For HTTP deployments, a JavaScript SHA-256 fallback is used. **For production environments, always use HTTPS** to ensure maximum security.
+
 ## Getting Started
 
 ### Prerequisites
