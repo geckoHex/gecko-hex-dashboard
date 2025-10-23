@@ -16,5 +16,9 @@ def date():
 def cal():
     return CMD.get_cal()
 
+@app.route('/add/<int:a>/<int:b>')
+def add(a, b):
+    return CMD.do_add(a, b)
+
 if __name__ == '__main__':
     app.run(debug=True)

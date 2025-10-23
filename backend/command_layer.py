@@ -14,3 +14,7 @@ def get_date() -> str:
 
 def get_cal() -> str:
     return run_command("cal")
+
+def do_add(a, b) -> str:
+    c = a + b
+    return str(c)
