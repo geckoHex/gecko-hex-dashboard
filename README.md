@@ -23,20 +23,40 @@ Create a `.env` file in the `backend` directory:
 FLASK_API_KEY=your-secret-key-here
 ```
 
-### Backend (Flask API - Port 5000)
+### Quick Start (Recommended)
+
+Use the unified runner script to start both backend and frontend servers:
+
+```bash
+./unified-runner.sh
+```
+
+This will:
+- Start the Flask backend on port 5000
+- Start the frontend server on port 3000
+- Create timestamped log files in the `logs/` directory
+- Keep both services running until you press `Ctrl+C`
+
+Then open your browser to: http://localhost:3000
+
+**Log Files**: All server output is saved to `logs/(timestamp)_BACKEND.txt` and `logs/(timestamp)_FRONTEND.txt`
+
+### Manual Start (Alternative)
+
+If you prefer to run the services separately:
+
+**Backend (Flask API - Port 5000)**
 ```bash
 cd backend
 source .venv/bin/activate
 python3 app.py
 ```
 
-### Frontend (Web UI - Port 3000)
+**Frontend (Web UI - Port 3000)**
 ```bash
 cd frontend
 python3 -m http.server 3000
 ```
-
-Then open your browser to: http://localhost:3000
 
 ## API Routes:
 
