@@ -62,6 +62,12 @@
                     </svg>
                     <span>Random Number</span>
                 </li>
+                <li class="sidebar-item" data-endpoint="add-numbers">
+                    <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    <span>Add Numbers</span>
+                </li>
             </ul>
         </nav>
 
@@ -82,6 +88,34 @@
                         <button id="getRandomBtn" class="btn btn-primary">Send Request</button>
                         <div id="randomResult" class="data-display">
                             <div class="data-placeholder">Click the button to send a request</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Numbers Endpoint -->
+            <div id="addNumbersEndpoint" class="content-page">
+                <div class="page-header">
+                    <h1>Add Numbers</h1>
+                    <p class="page-description">POST /add-numbers</p>
+                </div>
+                
+                <div class="section-card">
+                    <div class="section-header">
+                        <h2>Addition Calculator</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="form-group">
+                            <label for="num1">First Number:</label>
+                            <input type="number" id="num1" name="num1" placeholder="Enter first number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="num2">Second Number:</label>
+                            <input type="number" id="num2" name="num2" placeholder="Enter second number" required>
+                        </div>
+                        <button id="addNumbersBtn" class="btn btn-primary">Calculate Sum</button>
+                        <div id="addResult" class="data-display">
+                            <div class="data-placeholder">Enter two numbers and click Calculate Sum</div>
                         </div>
                     </div>
                 </div>

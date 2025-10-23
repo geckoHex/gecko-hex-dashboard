@@ -11,6 +11,8 @@ const loginError = document.getElementById('loginError');
 const logoutBtn = document.getElementById('logoutBtn');
 const getRandomBtn = document.getElementById('getRandomBtn');
 const randomResult = document.getElementById('randomResult');
+const addNumbersBtn = document.getElementById('addNumbersBtn');
+const addResult = document.getElementById('addResult');
 
 // Store API key in session storage
 let apiKey = sessionStorage.getItem('apiKey');
@@ -102,9 +104,31 @@ function logout() {
     sessionStorage.removeItem('apiKey');
     showLogin();
     randomResult.innerHTML = '<div class="data-placeholder">Click the button to generate a random number</div>';
+    addResult.innerHTML = '<div class="data-placeholder">Enter two numbers and click Calculate Sum</div>';
 }
 
 logoutBtn.addEventListener('click', logout);
+
+// Sidebar navigation
+document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.addEventListener('click', function() {
+        // Remove active class from all items
+        document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+        // Add active class to clicked item
+        this.classList.add('active');
+        
+        // Hide all pages
+        document.querySelectorAll('.content-page').forEach(page => page.classList.remove('active'));
+        
+        // Show the selected page
+        const endpoint = this.getAttribute('data-endpoint');
+        if (endpoint === 'random-number') {
+            document.getElementById('randomNumberEndpoint').classList.add('active');
+        } else if (endpoint === 'add-numbers') {
+            document.getElementById('addNumbersEndpoint').classList.add('active');
+        }
+    });
+});
 
 // Get random number
 getRandomBtn.addEventListener('click', async () => {
@@ -131,5 +155,51 @@ getRandomBtn.addEventListener('click', async () => {
     } catch (error) {
         randomResult.innerHTML = '<div class="data-placeholder" style="color: #a4262c;">Error connecting to server</div>';
         console.error('Random number error:', error);
+    }
+});
+
+// Add numbers
+addNumbersBtn.addEventListener('click', async () => {
+    const num1Input = document.getElementById('num1');
+    const num2Input = document.getElementById('num2');
+    
+    const num1 = num1Input.value;
+    const num2 = num2Input.value;
+    
+    // Validate inputs
+    if (!num1 || !num2) {
+        addResult.innerHTML = '<div class="data-placeholder" style="color: #a4262c;">Please enter both numbers</div>';
+        return;
+    }
+    
+    // Show loading state
+    addResult.innerHTML = '<div class="data-placeholder">Calculating...</div>';
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/add-numbers`, {
+            method: 'POST',
+            headers: {
+                'X-API-Key': apiKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                num1: parseInt(num1),
+                num2: parseInt(num2)
+            })
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            addResult.innerHTML = `<div class="data-value">${data.num1} + ${data.num2} = ${data.result}</div>`;
+        } else if (response.status === 401) {
+            logout();
+            alert('Session expired. Please login again.');
+        } else {
+            const error = await response.json();
+            addResult.innerHTML = `<div class="data-placeholder" style="color: #a4262c;">${error.error || 'Error calculating sum'}</div>`;
+        }
+    } catch (error) {
+        addResult.innerHTML = '<div class="data-placeholder" style="color: #a4262c;">Error connecting to server</div>';
+        console.error('Add numbers error:', error);
     }
 });
