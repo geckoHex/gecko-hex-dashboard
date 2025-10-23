@@ -87,12 +87,12 @@ async function verifyApiKey() {
 // Show dashboard
 function showDashboard() {
     loginSection.style.display = 'none';
-    dashboardSection.style.display = 'block';
+    dashboardSection.style.display = 'grid';
 }
 
 // Show login
 function showLogin() {
-    loginSection.style.display = 'block';
+    loginSection.style.display = 'flex';
     dashboardSection.style.display = 'none';
 }
 
@@ -101,13 +101,16 @@ function logout() {
     apiKey = null;
     sessionStorage.removeItem('apiKey');
     showLogin();
-    randomResult.textContent = '';
+    randomResult.innerHTML = '<div class="data-placeholder">Click the button to generate a random number</div>';
 }
 
 logoutBtn.addEventListener('click', logout);
 
 // Get random number
 getRandomBtn.addEventListener('click', async () => {
+    // Show loading state
+    randomResult.innerHTML = '<div class="data-placeholder">Loading...</div>';
+    
     try {
         const response = await fetch(`${API_BASE_URL}/random-number`, {
             method: 'GET',
@@ -118,15 +121,15 @@ getRandomBtn.addEventListener('click', async () => {
         
         if (response.ok) {
             const data = await response.json();
-            randomResult.textContent = `Random Number: ${data.number}`;
+            randomResult.innerHTML = `<div class="data-value">${data.number}</div>`;
         } else if (response.status === 401) {
             logout();
             alert('Session expired. Please login again.');
         } else {
-            randomResult.textContent = 'Error fetching random number';
+            randomResult.innerHTML = '<div class="data-placeholder" style="color: #a4262c;">Error fetching random number</div>';
         }
     } catch (error) {
-        randomResult.textContent = 'Error connecting to server';
+        randomResult.innerHTML = '<div class="data-placeholder" style="color: #a4262c;">Error connecting to server</div>';
         console.error('Random number error:', error);
     }
 });
