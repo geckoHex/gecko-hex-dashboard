@@ -1,13 +1,24 @@
 # Gecko Hex Dashboard
 
-A full-stack web application with a Flask REST API backend and vanilla JavaScript frontend. The project provides a secure, API-key authenticated interface for interacting with backend services.
+A full-stack web application with a Flask REST API backend and vanilla JavaScript frontend. The project provides a secure, credential-based authenticated interface for interacting with backend services.
 
 ## Core Functionality
 
-- **API Key Authentication**: All endpoints are protected with X-API-Key header authentication
+- **Secure Authentication**: Username and password are hashed using SHA-256 to create an API key
+- **API Key Protection**: All endpoints are protected with X-API-Key header authentication
 - **RESTful API**: Flask-based backend exposing JSON endpoints
-- **Web Interface**: Simple, modern UI with login flow and session management
+- **Modern UI**: Microsoft Fluent UI inspired design with clean, square aesthetic
+- **Web Interface**: Responsive UI with login flow and session management
 - **CORS Enabled**: Backend configured to communicate with frontend on different ports
+
+## Authentication Flow
+
+1. User enters username and password in the login form
+2. Frontend hashes the credentials using SHA-256: `hash(username:password)`
+3. The resulting hash is used as the API key for all subsequent requests
+4. Backend validates the API key against the configured `FLASK_API_KEY` in `.env`
+
+**Note**: To generate your API key for the `.env` file, hash your desired username:password combination using SHA-256.
 
 ## Getting Started
 
@@ -18,9 +29,27 @@ source .venv/bin/activate
 pip install flask flask-cors python-dotenv
 ```
 
-Create a `.env` file in the `backend` directory:
+Create a `.env` file in the `backend` directory with your hashed credentials:
 ```
-FLASK_API_KEY=your-secret-key-here
+FLASK_API_KEY=your-sha256-hash-here
+```
+
+**Generating your API key**: Hash your username and password combination using SHA-256.
+
+Example using Node.js:
+```bash
+node -e "console.log(require('crypto').createHash('sha256').update('myusername:mypassword').digest('hex'))"
+```
+
+Example using Python:
+```bash
+python3 -c "import hashlib; print(hashlib.sha256('myusername:mypassword'.encode()).hexdigest())"
+```
+
+Example using online tool or browser console:
+```javascript
+const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('myusername:mypassword'));
+console.log(Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join(''));
 ```
 
 ### Quick Start (Recommended)
@@ -57,6 +86,16 @@ python3 app.py
 cd frontend
 python3 -m http.server 3000
 ```
+
+## Design Updates
+
+The UI has been redesigned with Microsoft Fluent UI principles:
+- **Clean, Square Design**: Minimal border-radius (2px) for sharp, modern appearance
+- **Fluent Color Palette**: Microsoft blue (#0078d4) for primary actions, neutral grays for text
+- **Precise Shadows**: Subtle elevation using Fluent's shadow specifications
+- **Typography**: Segoe UI font family with appropriate weights and spacing
+- **Interactive States**: Hover and active states following Fluent guidelines
+- **Form Controls**: Square inputs with 1px borders that respond to focus and hover
 
 ## API Routes:
 

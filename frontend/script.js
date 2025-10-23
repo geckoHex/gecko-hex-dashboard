@@ -20,10 +20,25 @@ if (apiKey) {
     verifyApiKey();
 }
 
+// Function to hash username and password
+async function hashCredentials(username, password) {
+    const credentials = `${username}:${password}`;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(credentials);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
 // Login form submission
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const key = document.getElementById('apiKey').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // Hash the credentials to create API key
+    const key = await hashCredentials(username, password);
     
     // Test the API key
     try {
@@ -40,7 +55,7 @@ loginForm.addEventListener('submit', async (e) => {
             showDashboard();
             loginError.textContent = '';
         } else {
-            loginError.textContent = 'Invalid API key. Please try again.';
+            loginError.textContent = 'Invalid username or password. Please try again.';
         }
     } catch (error) {
         loginError.textContent = 'Error connecting to server. Please try again.';

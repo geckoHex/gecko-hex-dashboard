@@ -5,8 +5,8 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+    background: #f3f2f1;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,107 +15,144 @@ body {
 
 .container {
     width: 100%;
-    max-width: 500px;
+    max-width: 440px;
     padding: 20px;
 }
 
 .card {
-    background: white;
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    border-radius: 2px;
+    padding: 44px 44px 36px;
+    box-shadow: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
 }
 
 h1 {
-    color: #667eea;
-    margin-bottom: 10px;
+    color: #323130;
+    margin-bottom: 8px;
     text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 h2 {
-    color: #333;
-    margin-bottom: 20px;
+    color: #323130;
+    margin-bottom: 24px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
+    margin-bottom: 5px;
+    color: #323130;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 input[type="password"],
 input[type="text"] {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    padding: 8px 12px;
+    border: 1px solid #605e5c;
+    border-radius: 2px;
+    font-size: 14px;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.23, 1);
+    background: #ffffff;
+    color: #323130;
+    height: 32px;
+}
+
+input[type="password"]:hover,
+input[type="text"]:hover {
+    border-color: #323130;
 }
 
 input[type="password"]:focus,
 input[type="text"]:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #0078d4;
+    box-shadow: inset 0 0 0 1px #0078d4;
 }
 
 .btn {
     width: 100%;
-    padding: 12px;
-    background: #667eea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    padding: 0 20px;
+    height: 32px;
+    background: #0078d4;
+    color: #ffffff;
+    border: 1px solid #0078d4;
+    border-radius: 2px;
+    font-size: 14px;
     font-weight: 600;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.1s cubic-bezier(0.4, 0, 0.23, 1);
+    text-align: center;
+    line-height: 30px;
 }
 
 .btn:hover {
-    background: #5568d3;
+    background: #106ebe;
+    border-color: #106ebe;
+}
+
+.btn:active {
+    background: #005a9e;
+    border-color: #005a9e;
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background: #ffffff;
+    color: #323130;
+    border: 1px solid #8a8886;
     margin-bottom: 20px;
 }
 
 .btn-secondary:hover {
-    background: #5a6268;
+    background: #f3f2f1;
+    border-color: #323130;
+    color: #323130;
+}
+
+.btn-secondary:active {
+    background: #edebe9;
+    border-color: #201f1e;
+    color: #201f1e;
 }
 
 .error {
-    color: #dc3545;
-    margin-top: 10px;
+    color: #a4262c;
+    margin-top: 8px;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .dashboard-content {
-    margin-top: 30px;
+    margin-top: 24px;
     text-align: center;
 }
 
 .result {
-    margin-top: 20px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    min-height: 60px;
+    margin-top: 16px;
+    padding: 16px;
+    background: #f3f2f1;
+    border: 1px solid #edebe9;
+    border-radius: 2px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #667eea;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0078d4;
 }
 
 .result:empty {
@@ -123,5 +160,5 @@ input[type="text"]:focus {
 }
 
 .success {
-    color: #28a745;
+    color: #107c10;
 }

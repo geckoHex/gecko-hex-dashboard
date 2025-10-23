@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gecko Hex Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
 </head>
 <body>
     <!-- Login Section -->
     <div id="loginSection" class="container">
         <div class="card">
             <h1>Gecko Hex Dashboard</h1>
-            <h2>Login</h2>
+            <h2>Sign in</h2>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="apiKey">API Key:</label>
-                    <input type="password" id="apiKey" name="apiKey" required>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Sign in</button>
             </form>
             <div id="loginError" class="error"></div>
         </div>
